@@ -1,5 +1,7 @@
 import React, { useState } from "react"
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
+
+import Popup from './login/Popup.jsx'
 
 const Header = props => {
   const [active, setActive] = useState(false)
@@ -16,16 +18,17 @@ const Header = props => {
   }
 
   return (
+    <>
     <header>
       <Link className="logo" to="/"></Link>
       <nav className={active ? ' show' : ''}>
         <div className="container">
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/properties">Properties</Link></li>
-            <li><Link to="/about">About us</Link></li>
-            <li><Link to="/contact">Contact us</Link></li>
-            <li><Link to="/privacy">Privacy policy</Link></li>
+            <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
+            <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
+            <li><NavLink activeClassName="active" to="/about">About us</NavLink></li>
+            <li><NavLink activeClassName="active" to="/contact">Contact us</NavLink></li>
+            <li><NavLink activeClassName="active" to="/privacy">Privacy policy</NavLink></li>
           </ul>
           {
             !isUserLoggedIn ?
@@ -54,6 +57,9 @@ const Header = props => {
         </button>
       </div>
     </header>
+
+    <Popup />
+    </>
   )
 }
 

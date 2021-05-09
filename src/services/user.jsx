@@ -15,9 +15,10 @@ class User {
 	// Login
 	login(params) {
 		let that = this
-		return API.request('post', 'auth/login', params).then(function(res){
+		return API.request('post', 'login', params).then(function(res){
+			console.log(res)
 			API.setToken(res.token)
-			DB.set('user', res.user)
+			DB.set('user', res.email)
 			DB.set('token', res.token)
 			that.user = res.user
 		})

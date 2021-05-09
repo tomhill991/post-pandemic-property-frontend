@@ -1,0 +1,185 @@
+@import './mixins';
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), url('../../fonts/Roboto-Black.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), url('../../fonts/Roboto-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), url('../../fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), url('../../fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), url('../../fonts/Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: local('Lato'), url('../../fonts/Lato-Black.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: local('Lato'), url('../../fonts/Lato-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: local('Lato'), url('../../fonts/Lato-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: local('Lato'), url('../../fonts/Lato-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url('../../fonts/Montserrat-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url('../../fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url('../../fonts/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url('../../fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'), url('../../fonts/Montserrat-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Roboto';
+    color: $darkFont;
+}
+
+header {
+    font-family: 'Lato';
+    a {
+        color: $darkFont;
+    }
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Lato';
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: $darkFont;
+}
+
+.property-details {
+    .normal, .large {
+        font-weight: 400;
+    }
+
+    .normal {
+        font-size: 18px;
+        color: $lightGreyFont
+    }
+
+    .large {
+        font-size: 26px;
+        color: $darkFont;
+    }
+
+    .description {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        color: #000000;
+    }
+}
+
+.property-card {
+    button {
+        span {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
+section.reviews {
+    .title {
+        .average-rating {
+            font-family: Lato;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 17px;
+            /* identical to box height */
+            color: #000000;
+        }
+    }
+    .review {
+        .name {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 18px;
+        }
+        .date {
+            font-size: 14px;
+            line-height: 18px;
+        }
+        .description {
+            font-size: 14px;
+            line-height: 16px;
+        }
+    }
+}

@@ -12,11 +12,11 @@ const Login = props => {
 
     const { values, handleChange, handleSubmit} = useForm({
         initialValues,
-        onSubmit: values => login(values.values)
+        onSubmit: values => login(values)
     });
 
     const login = (finalValues) => {
-        User.login(finalValues).then(res => {
+        User.login(finalValues).then(() => {
             props.login()
         }).catch((err) => {
             console.log(err.message)
@@ -26,9 +26,11 @@ const Login = props => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="field">
+                <label>Email</label>
                 <input type="email" value={values.email} onChange={handleChange} name="email"/>
             </div>
             <div className="field">
+                <label>Password</label>
                 <input type="password" value={values.password} onChange={handleChange} name="password"/>
             </div>
 

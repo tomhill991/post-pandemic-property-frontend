@@ -20,13 +20,14 @@ const useForm = ({ initialValues, onSubmit }) => {
         const { name, value } = target;
         event.persist();
         setValues({ ...values, [name]: value });
+        console.log(values)
     };
 
     const handleSubmit = (event) => {
         if (event) 
             event.preventDefault();
 
-        onSubmit({ values });
+        onSubmit(values);
     };
 
     return {

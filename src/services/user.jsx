@@ -24,6 +24,16 @@ class User {
 		})
 	}
 
+	register(params) {
+		let that = this
+		return API.request('post', 'users', params).then(function(res){
+			API.setToken(res.token)
+			DB.set('user', res.email)
+			DB.set('token', res.token)
+			that.user = res.user
+		})
+	}
+
 	hasRole = (expected) => {
 		let realms = {
 			superAdmin: ['super-admin'],

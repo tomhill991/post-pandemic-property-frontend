@@ -6,7 +6,8 @@ import Properties from './views/pages/Properties'
 import Privacy from './views/pages/Privacy'
 import Contact from './views/pages/Contact'
 import Property from './views/pages/Property'
-import User from './views/pages/User'
+import Profile from './views/pages/Profile'
+import PrivateRoute from './views/components/PrivateRoute'
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <Route exact path="/properties/:id" component={Property}/>
       <Route exact path="/privacy" component={Privacy}/>
       <Route exact path="/contact" component={Contact}/>
-      <Route exact path="/user/:id" component={User}/>
+      <PrivateRoute exact path={"/profile"} component={Profile} />
     </Switch>
     </>
   );

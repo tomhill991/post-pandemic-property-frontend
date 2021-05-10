@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from "react"
-import { NavLink, Link, useLocation } from 'react-router-dom'
+import { NavLink, Link, useLocation, useHistory } from 'react-router-dom'
 
 import Popup from './login/Popup.jsx'
+import { connect } from 'react-redux'
+import { logout, login } from '../../redux';
+import User from '../../services/user.jsx'
 
 const Header = props => {
     const [active, setActive] = useState(false)
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(props.isUserLoggedIn)
     const [open, setOpen] = useState(false)
     const [openSignup, setOpenSignup] = useState(false)
     const location = useLocation()
+    const history = useHistory()
 
     useEffect(() => {
         if(location.pathname)
             setOpen(false)
-    }, [location, open])
+    }, [location])
+
+    useEffect(() => {
+        if(props.loginState)
+            closePopup(true)
+    }, [props.loginState])
 
     const toggleActive = () => {
         if(active) 
@@ -23,7 +31,8 @@ const Header = props => {
     }
 
     const logout = () => {
-        
+        User.logout()
+        props.logout()
     }
 
     const closePopup = () => {
@@ -45,18 +54,18 @@ const Header = props => {
             <li><NavLink onClick={() => toggleActive()} activeClassName="active" to="/privacy">Privacy policy</NavLink></li>
           </ul>
           {
-            !isUserLoggedIn ?
+            !props.loginState.loggedIn ?
             <>
           <ul>
-            <li><span onClick={() => setOpen(true)}>Login</span></li>
-            <li><span onClick={() => {setOpenSignup(true); setOpen(true)}}>Sign up</span></li>
+            <li><span className="link" onClick={() => setOpen(true)}>Login</span></li>
+            <li><span className="link" onClick={() => {setOpenSignup(true); setOpen(true)}}>Sign up</span></li>
           </ul>
             </>
             :
             <>
             <ul>
-              <li><span><img className="user-profile" src="/user-solid.svg" alt="user profile"/></span></li>
-              <li><span onClick={() => logout()}>Logout</span></li>
+              <li><span><img onClick={() => {toggleActive(); history.push('/profile')}} className="user-profile link" src="../../assets/images/user-solid.svg" alt="user profile"/></span></li>
+              <li><span className="link" onClick={() => logout()}>Logout</span></li>
             </ul>
             </>
           }
@@ -77,4 +86,19 @@ const Header = props => {
   )
 }
 
-export default Header
+function mapStateToProps(state) {
+    return {
+       loginState: state.login
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        login: () => dispatch(login()),
+		logout: () => dispatch(logout())
+    }
+}
+
+export default connect(
+    mapStateToProps, mapDispatchToProps
+)(Header)

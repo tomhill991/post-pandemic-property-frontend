@@ -55,6 +55,10 @@
         .tabs {
             display: flex;
             justify-content: space-between;
+
+            .tab {
+                cursor: pointer;
+            }
         }
 
         form {

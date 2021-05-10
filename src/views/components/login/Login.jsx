@@ -43,7 +43,7 @@ const Login = props => {
 
 function mapStateToProps(state) {
     return {
-       login: state.loggedIn
+       login: state.login
     };
 }
 

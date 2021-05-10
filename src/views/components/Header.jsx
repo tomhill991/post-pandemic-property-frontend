@@ -1,21 +1,35 @@
-import React, { useState } from "react"
-import { NavLink, Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react"
+import { NavLink, Link, useLocation } from 'react-router-dom'
 
 import Popup from './login/Popup.jsx'
 
 const Header = props => {
-  const [active, setActive] = useState(false)
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(props.isUserLoggedIn)
+    const [active, setActive] = useState(false)
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(props.isUserLoggedIn)
+    const [open, setOpen] = useState(false)
+    const [openSignup, setOpenSignup] = useState(false)
+    const location = useLocation()
 
-  const toggleActive = () => {
-    if(active) 
-      setActive(false)
-    else 
-      setActive(true)
-  }
-  const logout = () => {
-    
-  }
+    useEffect(() => {
+        if(location.pathname)
+            setOpen(false)
+    }, [location, open])
+
+    const toggleActive = () => {
+        if(active) 
+            setActive(false)
+        else 
+            setActive(true)
+    }
+
+    const logout = () => {
+        
+    }
+
+    const closePopup = () => {
+        setOpen(false)
+        setOpenSignup(false)
+    }
 
   return (
     <>
@@ -24,18 +38,18 @@ const Header = props => {
       <nav className={active ? ' show' : ''}>
         <div className="container">
           <ul>
-            <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
-            <li><NavLink activeClassName="active" to="/properties">Properties</NavLink></li>
-            <li><NavLink activeClassName="active" to="/about">About us</NavLink></li>
-            <li><NavLink activeClassName="active" to="/contact">Contact us</NavLink></li>
-            <li><NavLink activeClassName="active" to="/privacy">Privacy policy</NavLink></li>
+            <li><NavLink onClick={() => toggleActive()} activeClassName="active" to="/">Home</NavLink></li>
+            <li><NavLink onClick={() => toggleActive()} activeClassName="active" to="/properties">Properties</NavLink></li>
+            <li><NavLink onClick={() => toggleActive()} activeClassName="active" to="/about">About us</NavLink></li>
+            <li><NavLink onClick={() => toggleActive()} activeClassName="active" to="/contact">Contact us</NavLink></li>
+            <li><NavLink onClick={() => toggleActive()} activeClassName="active" to="/privacy">Privacy policy</NavLink></li>
           </ul>
           {
             !isUserLoggedIn ?
             <>
           <ul>
-            <li><span>Login</span></li>
-            <li><span>Sign up</span></li>
+            <li><span onClick={() => setOpen(true)}>Login</span></li>
+            <li><span onClick={() => {setOpenSignup(true); setOpen(true)}}>Sign up</span></li>
           </ul>
             </>
             :
@@ -58,7 +72,7 @@ const Header = props => {
       </div>
     </header>
 
-    <Popup />
+    <Popup open={open} closePopup={closePopup} openSignup={openSignup}/>
     </>
   )
 }

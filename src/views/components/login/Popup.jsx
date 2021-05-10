@@ -1,17 +1,25 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Login from './Login'
 import Register from './Register'
 
 const Popup = props => {
-    const [selected, setSelected] = useState('login')
+    const [selected, setSelected] = useState(props.selected)
+
+    useEffect(() => {
+        if(props.openSignup)
+            setSelected('register')
+        else
+            setSelected('login')
+    }, [props.openSignup])
+
     return (
-        <div className="popup-wrapper open">
+        <div className={"popup-wrapper" + (props.open ? " open" : "")}>
             <div className="popup-container">
-                <span className="close-popup"></span>
+                <span className="close" onClick={() => props.closePopup()}></span>
                 <div className="content">
                     <div className="tabs">
                         <div className="tab" onClick={() => setSelected('login')}>Login</div>
-                        <div className="register" onClick={() => setSelected('register')}>Register</div>
+                        <div className="tab" onClick={() => setSelected('register')}>Register</div>
                     </div> 
                     {   
                         selected === 'login' &&

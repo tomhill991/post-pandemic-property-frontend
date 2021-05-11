@@ -23,40 +23,58 @@ const MakeAReservation = props => {
     return (
         <>
             <h2>Check availability</h2>
-            <div className="dates">
-                <div className="field datepicker">
-                    <p>Check in</p>
-                    <DatePicker 
-                        selected={startDate} 
-                        onChange={date => {setStartDate(date); setCanSelectEndDate(true)}}
-                        dateFormat="yyyy-MM-dd"
-                        selectsStart
-                        minDate={new Date()}
-                        startDate={startDate}
-                        endDate={endDate}
-                        excludeDates={disabledDates}
-                    />
+            <form>
+
+                <div className="dates">
+                    <div className="field datepicker">
+                        <label>Check in</label>
+                        <DatePicker 
+                            selected={startDate} 
+                            onChange={date => {setStartDate(date); setCanSelectEndDate(true)}}
+                            dateFormat="yyyy-MM-dd"
+                            selectsStart
+                            minDate={new Date()}
+                            startDate={startDate}
+                            endDate={endDate}
+                            excludeDates={disabledDates}
+                            popperModifiers={{
+                                preventOverflow: {
+                                enabled: true,
+                                },
+                            }}
+                        />
+                    </div>
+
+                    <div className="field datepicker">
+                        <label>Check out</label>
+                        <DatePicker 
+                            selected={endDate} 
+                            readOnly={!canSelectEndDate}
+                            onChange={date => setEndDate(date)} 
+                            dateFormat="yyyy-MM-dd"
+                            selectsEnd
+                            startDate={startDate}
+                            endDate={endDate}
+                            minDate={new Date(moment(startDate, 'YYYY-MM-DD').add(1, 'days'))}
+                            excludeDates={disabledDates}
+                            popperModifiers={{
+                                preventOverflow: {
+                                enabled: true,
+                                },
+                            }}
+                        />
+                    </div>
                 </div>
 
-                <div className="field datepicker">
-                    <p>Check out</p>
-                    <DatePicker 
-                        selected={endDate} 
-                        readOnly={!canSelectEndDate}
-                        onChange={date => setEndDate(date)} 
-                        dateFormat="yyyy-MM-dd"
-                        selectsEnd
-                        startDate={startDate}
-                        endDate={endDate}
-                        minDate={new Date(moment(startDate, 'YYYY-MM-DD').add(1, 'days'))}
-                        excludeDates={disabledDates}
-                    />
+                <div className="field">
+                    <label>No of guests</label>
+                    <select name="no_of_guests" required></select>
                 </div>
-            </div>
 
-            <div className="field">
-                <select name="no_of_guests"></select>
-            </div>
+                <div className="field">
+                    <button>Book dates</button>
+                </div>
+            </form>
         </>
     );
 };

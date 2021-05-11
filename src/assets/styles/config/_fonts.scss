@@ -252,18 +252,14 @@ section.make-a-reservation {
             }
         }
 
-        .dates {
-            .field {
-                p {
-                    font-family: Lato;
-                    font-style: normal;
-                    font-weight: bold;
-                    font-size: 12px;
+        label {
+            font-family: Lato;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 12px;
 
-                    @include tablet-landscape {
-                        font-size: 18px;
-                    }
-                }
+            @include tablet-landscape {
+                font-size: 18px;
             }
         }
     }

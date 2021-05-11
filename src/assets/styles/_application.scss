@@ -67,10 +67,413 @@
         height: 36px;
     }
 
-    button {
-        background: $red;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        height: 45px;
+    &:not(.datepicker) {
+        button {
+            background: $red;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.swiper-pagination-bullet {
+    background: #C4C4C4 !important;
+}
+
+.button, button:not(.react-datepicker__navigation) {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+    
+    &.red {     
+        background-color: $red;
+    }
+
+    span {
+        color: white;
+        margin: auto;
+    }
+}
+
+.map-container {
+    .geocoder-container {
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        visibility: hidden;
+        transition: visibility 0.3s ease-out;
+    }
+
+    .marker-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    
+    img.map-marker {
+        width: 20px;
+        height: 20px;
+    }
+
+    .map-toggler {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 53px;
+        background: white;
+        padding-bottom: 9px;
+    
+        .mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
+            display: none;
+        }
+    
+        .open-close-wrap {
+            height: 60px;
+            width: 60px;
+            position: absolute;
+            bottom: 6px;
+    
+            span.search-icon {
+                @include backgroundImage('../../images/search-icon.png', contain, center);
+                height: 17px;
+                width: 17px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+                z-index: 500;
+            }
+        }
+        button.open-close {
+            border-radius: 50%;
+            height: 60px;
+            width: 60px;
+            outline: none;
+            border: none;
+            position: relative;
+            z-index: 0;
+    
+            &:before {
+                content: '';
+                background: white;
+                z-index: 5;
+                border-radius: 50%;
+                top: -6px;
+                right: -6px;
+                left: -6px;
+                bottom: -6px;
+                z-index: 0;
+                position: absolute;
+            }
+    
+            &:after {
+                content: '';
+                position: absolute;
+                z-index: 10000;
+                height: 100%;
+                width: 100%;
+                background: $red;
+                left: 0;
+                top: 0;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    &.show {
+        .map-toggler {
+            .open-close-wrap {
+                span.search-icon {
+                    @include backgroundImage('../../images/close-menu-white.png', contain, center);
+                }
+            }
+        }
+
+        .geocoder-container {
+            visibility: visible;
+            transition: visibility 0.3s ease-in;
+            z-index: 10;
+        }
+    }
+}
+
+.property-details {
+    .content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        .half {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top {
+            position: relative;
+            padding-bottom: 11px;
+
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                height: 1px;
+                width: 194px;
+                background-color: #9999;
+            }
+
+            p:first-of-type {
+                margin-bottom: 15px;
+            }
+        }
+
+        .bottom {
+            flex-grow: 1;
+            padding-top: 24px;
+
+            a.button {
+                margin-top: auto;
+            }
+
+            .description {
+                margin-top: 21px;
+            }
+        }
+    }
+}
+
+.property-card {
+    position: fixed;
+    top: 74px;
+    bottom: 16px;
+    left: 10px;
+    right: 10px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+
+    .close {
+        @include backgroundImage('../../images/close-menu-white.png', contain, center);
+        cursor: pointer;
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        width: 17px;
+        height: 17px;
+        z-index: 100000;
+    }
+
+    .swiper-container {
+        height: 259px;
+        width: 100%;
+
+        img {
+            height: 100%;
+            width: 100%;
+            border-radius: 20px 20px 0 0;
+        }
+    }
+
+    .content {
+        padding: 30px 21px;
+
+        .bottom {
+            padding-top: 24px;
+        }
+    }
+}
+
+main.properties-show {
+    h2 {
+        margin-bottom: 24px;
+    }
+
+    section.swiper-images {
+        .swiper-container {
+            height: 317px;
+            .swiper-slide {
+                height: auto;
+                img {
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    section.property-details {
+        padding: 42px 0;
+    }
+
+    section.reviews {
+        margin-top: 38px;
+        padding-bottom: 144px;
+
+        .title {
+            padding-left: 24px;
+            margin-bottom: 22px;
+
+            .average-rating {
+                margin-top: 24px;
+
+                p {
+                    padding-left: 32px;
+                    position: relative;
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        @include backgroundImage('../../images/star-solid.svg', contain, center);
+                        width: 20px;
+                        height: 18px;
+                        left: 0;
+                    }
+                }
+            }
+        }
+        .swiper-container {
+            height: 230px;
+            
+            .swiper-slide {
+                width: 302px;
+                border: 1px solid #EEEEEE;
+                border-radius: 5px;
+            }
+
+            .review {
+                padding: 20px 16px 45px;
+            }
+
+            .title {
+                margin-left: 26px;
+            }
+
+            .name {
+                margin-bottom: 9px;
+            }
+
+            .review-head {
+                display: flex;
+                margin-bottom: 24px;
+            }
+
+            img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    section.amenities {
+        margin-bottom: 17px;
+
+        .amenities-container {
+            display: flex;
+            flex-wrap: wrap;
+        
+            .amenity {
+                position: relative;
+                padding-left: 40px;
+                margin-bottom: 24px;
+                width: 50%;
+                
+                p {
+                    &:before {
+                        content: '';
+                        height: 25px;
+                        width: 25px;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                }
+                &.swimming-pool {
+                    p {
+                        &:before {
+                            @include backgroundImage('../../images/swimming-pool-solid.svg', contain, center);
+                        }
+                    }
+                }
+            
+                &.hdtv {
+                    p {
+                        &:before {
+                            @include backgroundImage('../../images/tv-solid.svg', contain, center);
+                        }
+                    }
+                }
+        
+                &.kitchen {
+                    p {
+                        &:before {
+                            @include backgroundImage('../../images/utensils-solid.svg', contain, center);
+                        }   
+                    }
+                }
+        
+                &.bathtub {
+                    p {
+                        &:before {
+                            @include backgroundImage('../../images/bath-solid.svg', contain, center);
+                        }  
+                    }
+                }
+        
+                &.beach {
+                    p {
+                        &:before {
+                            @include backgroundImage('../../images/umbrella-beach-solid.svg', contain, center);
+                        } 
+                    }
+                }
+        
+                &.beds {
+                    p {
+                        &:before {
+                            @include backgroundImage('../../images/bed-solid.svg', contain, center);
+                        } 
+                    }
+                }
+            }
+        }
+    }
+
+    section.make-a-reservation {
+        background: #FFFFFF;
+        z-index: 1000000;
+        border: 1px solid #C4C4C4;
+        box-sizing: border-box;
+        box-shadow: 0px 1px 5px rgba(222, 222, 222, 0.25);
+        height: 104px;
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        padding: 16px 0;
+        padding-right: 25px;
+
+        .button {
+            width: 207px;
+            margin-left: auto;
+        }
     }
 }

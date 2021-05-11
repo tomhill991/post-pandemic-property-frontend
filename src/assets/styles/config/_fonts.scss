@@ -225,3 +225,46 @@ section.reviews {
         }
     }
 }
+
+section.make-a-reservation {
+    .button {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+    }
+}
+
+.popup-wrapper {
+    &.reservation {
+        h2 {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: 600;
+            color: #00257A;
+            font-size: 24px;
+            text-align: center;
+
+            @include tablet-landscape {
+                font-size: 36px;
+                line-height: 44px;
+            }
+        }
+
+        .dates {
+            .field {
+                p {
+                    font-family: Lato;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 12px;
+
+                    @include tablet-landscape {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

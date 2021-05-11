@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { NavLink, Link, useLocation, useHistory } from 'react-router-dom'
 
-import Popup from './login/Popup.jsx'
+import Popup from './Popup.jsx'
 import { connect } from 'react-redux'
 import { logout, login } from '../../redux';
 import User from '../../services/user.jsx'
@@ -64,7 +64,7 @@ const Header = props => {
             :
             <>
             <ul>
-              <li><span><img onClick={() => {toggleActive(); history.push('/profile')}} className="user-profile link" src="../../assets/images/user-solid.svg" alt="user profile"/></span></li>
+              <li><span><img onClick={() => {toggleActive(); history.push('/profile')}} className="user-profile link" src="./user-solid.svg" alt="user profile"/></span></li>
               <li><span className="link" onClick={() => logout()}>Logout</span></li>
             </ul>
             </>
@@ -81,7 +81,7 @@ const Header = props => {
       </div>
     </header>
 
-    <Popup open={open} closePopup={closePopup} openSignup={openSignup}/>
+    <Popup open={open} closePopup={closePopup} openSignup={openSignup} loginPopup/>
     </>
   )
 }

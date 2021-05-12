@@ -122,7 +122,7 @@ const Property = props => {
                     <button onClick={() => handlePopup()} className="red button"><span>Make a reservation</span></button>
                 </section>
             </main>
-        <Popup makeAReservation open={open} closePopup={handlePopup} bookings={property.bookings}/>
+            <Popup makeAReservation open={open} closePopup={handlePopup} bookings={property.bookings} maxGuests={property['max-guests']}/>
         </>
         }
 

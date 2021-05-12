@@ -4,7 +4,7 @@ import Register from './Register'
 
 const LoginContent = props => {
     const [selected, setSelected] = useState('login')
-    
+
     useEffect(() => {
         if(props.openSignup)
             setSelected('register')
@@ -20,11 +20,11 @@ const LoginContent = props => {
         </div> 
         {   
             selected === 'login' &&
-            <Login />
+            <Login closePopup={props.closePopup}/>
         }
         {
             selected === 'register' &&
-            <Register />
+            <Register closePopup={props.closePopup}/>
         }
         </>
     )

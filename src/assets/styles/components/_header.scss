@@ -4,7 +4,7 @@ header {
     height: 60px;
     background-color: $blue;
     position: relative;
-    z-index: 10000000;
+    z-index: 1000;
 
     nav {
         display: flex;
@@ -74,7 +74,7 @@ header {
 
     }
     a.logo {
-      @include backgroundImage('../../images/ppp-logo-white.png', contain, center);
+        @include backgroundImage('../../images/ppp-logo-white.png', contain, center);
         width: 60px;
         height: 60px;
         position: absolute;

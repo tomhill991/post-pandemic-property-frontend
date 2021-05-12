@@ -19,6 +19,7 @@ const Register = props => {
     const handleRegistration = (finalValues) => {
         User.register(finalValues).then(() => {
             props.login()
+            props.closePopup()
         }).catch((err) => {
             console.log(err.message)
 		});
@@ -40,7 +41,7 @@ const Register = props => {
             </div>
 
             <div className="field">
-                <button>Register</button>
+                <button className="button">Register</button>
             </div>
         </form>
     )

@@ -18,6 +18,7 @@ const Login = props => {
     const login = (finalValues) => {
         User.login(finalValues).then(() => {
             props.login()
+            props.closePopup()
         }).catch((err) => {
             console.log(err.message)
 		});
@@ -35,7 +36,7 @@ const Login = props => {
             </div>
 
             <div className="field">
-                <button>Submit</button>
+                <button className="button">Submit</button>
             </div>
         </form>
     )

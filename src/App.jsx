@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Header from './views/components/Header'
 import Home from './views/pages/Home'
@@ -8,10 +9,25 @@ import Contact from './views/pages/Contact'
 import Property from './views/pages/Property'
 import Profile from './views/pages/Profile'
 import PrivateRoute from './views/components/PrivateRoute'
+import { ToastContainer } from 'react-toastify';
+import { connect } from 'react-redux'
+import { login } from './redux';
+import User from './services/user'
 
-function App() {
+
+function App(props) {
+
+  useEffect(() => {
+    if(User.current()) {
+      props.login()
+    }
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <>
+    <ToastContainer position="top-right" />
     <Header />
     <Switch>
       <Route exact path="/" component={Home}/>
@@ -26,4 +42,18 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+     login: state.login
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: () => dispatch(login()),
+  }
+}
+
+export default connect(
+  mapStateToProps, mapDispatchToProps
+)(App)

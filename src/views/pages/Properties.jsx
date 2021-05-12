@@ -15,8 +15,8 @@ const Properties = props => {
     }, [])
 
     return (
-        <main class="properties">
-            <section class="map">
+        <main className="properties">
+            <section className="map">
                 <MapIndex properties={properties}/>
             </section>
         </main>

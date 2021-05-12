@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useHistory} from 'react-router-dom'
+import React, { useState, useEffect, useMemo } from "react";
+import { useParams, useHistory } from 'react-router-dom'
 import DatePicker from "react-datepicker";
 import moment from 'moment'
 import API from '../../services/api'
@@ -15,7 +15,7 @@ const MakeAReservation = props => {
     const [open, setOpen] = useState(false)
     const params = useParams()
     const history = useHistory()
-    const disabledDates = []
+    const disabledDates = useMemo(() => [],[])
 
     const handlePopup = () => {
         if(open)
